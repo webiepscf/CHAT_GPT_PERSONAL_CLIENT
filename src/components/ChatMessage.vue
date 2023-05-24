@@ -1,15 +1,30 @@
+<!-- src/components/ChatMessage.vue -->
 <template>
-  <div class="chat-message">
-    <!-- Individual chat message will go here -->
+  <div
+    class="chat-message"
+    :class="{
+      'bot-message': message.sender === 'bot',
+      'user-message': message.sender === 'user',
+    }"
+  >
+    {{ message.text }}
+    <button @click="pinMessage">Épingler</button>
   </div>
 </template>
 
 <script setup lang="ts">
-// We will add our script here later
+import { defineProps } from "vue";
+import { useChatStore } from "../stores/chatStore";
+
+const props = defineProps({
+  message: Object,
+});
+
+const store = useChatStore();
+
+const pinMessage = () => {
+  store.pinMessage(props.message);
+};
 </script>
 
-<style scoped>
-.chat-message {
-  /* Add your styles for the chat message here */
-}
-</style>
+<!-- Add your styles here -->

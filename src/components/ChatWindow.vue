@@ -1,11 +1,19 @@
 <template>
   <div class="chat-window">
-    <!-- Chat messages will go here -->
+    <ChatMessage
+      v-for="(message, index) in store.messages"
+      :key="index"
+      :message="message"
+      @pin="store.pinMessage"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-// We will add our script here later
+import { useChatStore } from "../stores/chatStore";
+import ChatMessage from "./ChatMessage.vue";
+
+const store = useChatStore();
 </script>
 
 <style scoped>

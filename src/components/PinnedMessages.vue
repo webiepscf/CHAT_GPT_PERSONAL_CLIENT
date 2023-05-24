@@ -1,15 +1,19 @@
+<!-- src/components/PinnedMessages.vue -->
 <template>
   <div class="pinned-messages">
-    <!-- Chat messages will go here -->
+    <ChatMessage
+      v-for="(message, index) in store.pinnedMessages"
+      :key="index"
+      :message="message"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-// We will add our script here later
+import { useChatStore } from "../stores/chatStore";
+import ChatMessage from "./ChatMessage.vue";
+
+const store = useChatStore();
 </script>
 
-<style scoped>
-.pinned-messages {
-  /* Add your styles for the chat window here */
-}
-</style>
+<!-- Add your styles here -->
